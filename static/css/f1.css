@@ -1,3 +1,43 @@
+#content-wrapper {
+  background-image: url(../images/f1_main_bg.jpg);
+  background-size: cover;
+}
+
 .choice {
   padding: 10px;
+}
+
+.white-text {
+  color: white;
+}
+
+.card-body {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.logo-img {
+  padding: 1%;
+  filter: drop-shadow(-5px 3px 5px red);
+}
+
+.logo-type {
+  font-family: "Racing Sans One", cursive;
+  font-size: 4em;
+}
+
+.sidebar {
+  background-color: #343a40;
+}
+
+.bg-f1-grad {
+  background: rgb(52, 58, 64);
+  background: linear-gradient(
+    0deg,
+    rgba(52, 58, 64, 1) 48%,
+    rgba(0, 0, 0, 1) 100%
+  );
 }
