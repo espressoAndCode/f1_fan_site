@@ -1,35 +1,52 @@
-{% extends 'index.html' %}
-{% csrf_token %}
-
-
-{% block datatable%}
+{% extends 'index.html' %} {% csrf_token %} {% block datatable%}
 <div class="card-header">
-  <i class="fas fa-table"></i>
-  Formula 1 {{ year}} Season</div>
+  <div id="table-title">Formula 1 {{ year }} Season</div>
+</div>
 <div class="card-body">
   <div class="table-responsive">
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <table
+      class="table table-bordered"
+      id="dataTable"
+      width="100%"
+      cellspacing="0"
+    >
       <thead>
         <tr>
           <th>Position</th>
           <th>Driver</th>
-          {% comment %} <th>Circuit Name</th>
-          <th>Results</th> {% endcomment %}
+          {% comment %}
+          <th>Circuit Name</th>
+          <th>Results</th>
+          {% endcomment %}
         </tr>
       </thead>
       <tbody>
         {% for result in results %}
         <tr>
-        {% if result.position == 99 %}
+          {% if result.position == 99 %}
           <td>DNF</td>
-        {% else %}
-          <td>{{result.position}}</td>
-        {% endif %}
-          <td><a href={{result.driverId.url}}> {{ result.driverId.forename }} {{ result.driverId.surname }} </a></td>
-          {% comment %} <td> <a href={{race.circuitId.url}} > {{ race.circuitId.name }} </a></td> {% endcomment %}
-          {% comment %} <td> <button type="button" class="btn btn-sm btn-danger" id="{{}}">Results</button> </td> {% endcomment %}
+          {% else %}
+          <td>{{ result.position }}</td>
+          {% endif %}
+          <td>
+            <a href="{{ result.driverId.url }}">
+              {{ result.driverId.forename }} {{ result.driverId.surname }}
+            </a>
+          </td>
+          {% comment %}
+          <td>
+            <a href="{{ race.circuitId.url }}"> {{ race.circuitId.name }} </a>
+          </td>
+          {% endcomment %} {% comment %}
+          <td>
+            <button type="button" class="btn btn-sm btn-danger" id="{{}}">
+              Results
+            </button>
+          </td>
+          {% endcomment %}
         </tr>
         {% endfor %}
+      </tbody>
     </table>
   </div>
 </div>

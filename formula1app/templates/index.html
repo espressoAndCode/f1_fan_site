@@ -52,21 +52,20 @@
       >
         <i class="fas fa-bars"></i>
       </button>
-      <img
-        src="{% static 'images/f1_logo_car.png' %}"
-        alt="formula 1 car"
-        class="logo-img"
-      />
-      <a class="navbar-brand mr-1 logo-type" href="index.html"
-        >Formula 1 Fanatic</a
-      >
+      <a href="/" class="logo-img">
+        <img src="{% static 'images/f1_logo_car.png' %}" alt="formula 1 car" />
+      </a>
+      <a class="navbar-brand mr-1 logo-type" href="/">Formula 1 Fanatic</a>
     </nav>
 
     <div id="wrapper">
       <div id="sidebar">
         {% block sidebar %}
+
         <ul class="sidebar navbar-nav">
-          <li><a href="/" class="btn btn-light">Home</a></li>
+          <li class="nav-item text-center">
+            <a href="/" class="btn btn-light">Home</a>
+          </li>
         </ul>
         {% endblock %}
       </div>
@@ -88,7 +87,7 @@
     <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
     <!-- Page level plugin JavaScript-->
-    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+    <!-- <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script> -->
     <script src="{% static 'vendor/datatables/jquery.dataTables.js' %}"></script>
     <script src="{% static 'vendor/datatables/dataTables.bootstrap4.js' %}"></script>
 
@@ -97,6 +96,6 @@
 
     <!-- Demo scripts for this page-->
     <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
-    <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+    <!-- <script src="{% static 'js/demo/chart-area-demo.js' %}"></script> -->
   </body>
 </html>

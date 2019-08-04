@@ -3,6 +3,11 @@
   background-size: cover;
 }
 
+#table-title {
+  font-family: "Racing Sans One", cursive;
+  font-size: 2em;
+}
+
 .choice {
   padding: 10px;
 }
@@ -11,17 +16,18 @@
   color: white;
 }
 
-.card-body {
-  background-color: rgba(255, 255, 255, 0);
-}
-
 .card {
   background-color: rgba(255, 255, 255, 0.4);
+}
+
+.card-body {
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .logo-img {
   padding: 1%;
   filter: drop-shadow(-5px 3px 5px red);
+  margin-right: 50px;
 }
 
 .logo-type {

@@ -1,26 +1,9 @@
 {% extends 'index.html' %}
+{% csrf_token %}
 
-{% block sidebar %}
-<!-- Sidebar -->
-<ul class="sidebar navbar-nav">
-  <li class="nav-item dropdown choice">
-    <form action="" method="get" name="input-form" class="input-form year">
-  <div class="form-group">
-    <label for="formGroupYearInput" class="white-text">Choose a year from 1950 to 2018:</label>
-    <input select id="year" name="year" class=" form-control form-control-s" maxlength="4" pattern="\d{4}" required/>
-    </div>
-      <div class="input-form">
-        {% csrf_token %}
-        <input type="submit" value="Select" class="btn btn-light">
-      </div>
-    </form>
-  </li>
-</ul>
-{% endblock %}
 
 {% block datatable%}
-<div class="card-header">
-  {% comment %} <i class="fas fa-table"></i> {% endcomment %}
+<div class="card-header" id="table-title">
 {{ year}} Racing Season</div>
 <div class="card-body">
   <div class="table-responsive">
