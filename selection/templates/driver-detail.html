@@ -32,22 +32,24 @@
               </thead>
 
         <tbody>
+        {% for result in resultsData %}
           <tr>
             <td>Finish Position</th>
-            <td>{{resultsData.positionText}}</td>
+            <td>{{result.positionText}}</td>
           </tr>
           <tr>
             <td>Grid Position</th>
-            <td>{{resultsData.grid}}</td>
+            <td>{{result.grid}}</td>
           </tr>
           <tr>
             <td>Points</th>
-            <td>{{resultsData.points}}</td>
+            <td>{{result.points}}</td>
           </tr>
-          <tr>
+          {% comment %} <tr>
             <td>Time</th>
-            <td>{{resultsData.time}}</td>
-          </tr>
+            <td>{{result.time}}</td>
+          </tr> {% endcomment %}
+        {% endfor %}
 
         </tbody>
       </table>

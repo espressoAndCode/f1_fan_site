@@ -26,7 +26,7 @@ class SeasonPageView(View):
     selectedYear = self.kwargs['year']
     raceName = None
     raceResults = []
-    rawResults = Results.objects.filter(raceId=selectedRaceId)
+    rawResults = Results.objects.filter(raceId=selectedRaceId).order_by('position')
     for item in rawResults:
       if (raceName == None):
         raceName = item.raceId.name
@@ -35,7 +35,6 @@ class SeasonPageView(View):
       else:
         item.position = item.position
       raceResults.append(item)
-    raceResults = sorted(raceResults, key=lambda k: k.position)
     return render(request, 'results.html', context={'results': raceResults, 'year': selectedYear, 'raceName': raceName, 'raceId': selectedRaceId})
 
 class DriverPageView(View):
@@ -45,7 +44,4 @@ class DriverPageView(View):
     _year = self.kwargs['year']
     _resultsData = Results.objects.all().filter(raceId=self.kwargs['raceId']).filter(driverId=self.kwargs['driverId'])
     _wikiData = services.getWikiData(_driverData.url)
-    print("Results data - ", list(_resultsData.values()))
-
-
     return render(request, 'driver-detail.html', context={'driverData': _driverData, 'raceData': _raceData, 'year': _year, 'wikiData': _wikiData, 'resultsData': _resultsData })

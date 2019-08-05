@@ -14,18 +14,15 @@
         <tr>
           <th>Position</th>
           <th>Driver</th>
-          {% comment %}
-          <th>Circuit Name</th>
-          <th>Results</th>
-          {% endcomment %}
         </tr>
       </thead>
       <tbody>
-        {% for result in results %}
+        {% for result in results  %}
         <tr>
           {% if result.position == 99 %}
           <td>DNF</td>
           {% else %}
+          <td hidden>{{ result.position|dictsort:"position" }}</td>
           <td>{{ result.position }}</td>
           {% endif %}
           <td>
