@@ -45,16 +45,28 @@
             <td>Points</th>
             <td>{{result.points}}</td>
           </tr>
-          {% comment %} <tr>
-            <td>Time</th>
-            <td>{{result.time}}</td>
-          </tr> {% endcomment %}
         {% endfor %}
 
         </tbody>
       </table>
     </div>
   </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-10-offset-1">
+      <table class="table">
+      <tbody>
+{% for url in webSearchData %}
+<td>{{url}}</td>
+
+
+{% endfor %}
+</tbody>
+</table>
+  </div>
+</div>
+
 </div>
 
 <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->

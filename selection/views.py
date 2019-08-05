@@ -44,4 +44,7 @@ class DriverPageView(View):
     _year = self.kwargs['year']
     _resultsData = Results.objects.all().filter(raceId=self.kwargs['raceId']).filter(driverId=self.kwargs['driverId'])
     _wikiData = services.getWikiData(_driverData.url)
-    return render(request, 'driver-detail.html', context={'driverData': _driverData, 'raceData': _raceData, 'year': _year, 'wikiData': _wikiData, 'resultsData': _resultsData })
+    _driverName = getattr(_driverData, 'forename') + " " + getattr(_driverData, 'surname')
+    _raceName = getattr(_raceData, 'name')
+    _webSearchData = services.getWebSearchResults(_driverName, _year, _raceName)
+    return render(request, 'driver-detail.html', context={'driverData': _driverData, 'raceData': _raceData, 'year': _year, 'wikiData': _wikiData, 'resultsData': _resultsData, '  ':  _webSearchData})
