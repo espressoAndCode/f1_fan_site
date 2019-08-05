@@ -1,31 +1,14 @@
-# import requests
+import requests
+from bs4 import BeautifulSoup
 
-# F1PATH='localhost:8080/'
+def getWikiData(url):
+  page = requests.get(url)
+  soup = BeautifulSoup(page.text, 'html.parser')
+  infobox = soup.find("table", class_='infobox')
+  photo = infobox.find_all("img")
 
-# def get_data(year):
-
-
-
-# def get_data(year):
-#   data = {
-#     'seasonData': None,
-#     'raceData': None
-#   }
-#   races = []
-
-#   url = F1PATH + 'races?year=' + year
-#   r = requests.get( url).json()
-#   seasonData = r['MRData']['RaceTable']
-#   data['seasonData'] = seasonData
-#   print ("Sanity check - ",seasonData)
-
-#   numraces = len(seasonData['Races'])
-#   for idx in range(numraces):
-#     print("race # - ", idx)
-#     url = F1PATH + year +'/' + str(idx + 1) + '/results.json'
-#     r = requests.get( url).json()
-#     raceData = r['MRData']['RaceTable']['Races'][0]['Results']
-#     races.append(raceData)
-#     data['raceData'] = races
-
-#   return data
+  print("Soup - ", photo[0]['src'])
+  wikiData = {
+    'photo': photo[0]['src']
+  }
+  return wikiData

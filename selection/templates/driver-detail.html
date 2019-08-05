@@ -1,0 +1,59 @@
+{% extends 'index.html' %} {% csrf_token %} {% block datatable%}
+<div class="card-header">
+  <div id="table-title">
+    {{driverData.forename}} {{driverData.surname}} at the {{year}} {{raceData.name}}
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+
+      <div class="card-body">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="{{wikiData.photo}}" alt="Card image cap" />
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="{{driverData.url}}">
+                {{ driverData.forename }} {{ driverData.surname }}
+              </a></h5>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-8">
+
+      <table class="table">
+              <thead>
+                <tr>
+                  <th>Statistic</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+
+        <tbody>
+          <tr>
+            <td>Finish Position</th>
+            <td>{{resultsData.positionText}}</td>
+          </tr>
+          <tr>
+            <td>Grid Position</th>
+            <td>{{resultsData.grid}}</td>
+          </tr>
+          <tr>
+            <td>Points</th>
+            <td>{{resultsData.points}}</td>
+          </tr>
+          <tr>
+            <td>Time</th>
+            <td>{{resultsData.time}}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+{% endblock %}

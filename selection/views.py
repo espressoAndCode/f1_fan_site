@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.views import View
+from django.contrib import messages
+from django.db.models import Q
 from selection import services
 import requests
-from django.contrib import messages
 from selection.models import Circuits, DriverStandings, Drivers, LapTimes, Races, Results
 
-def home (request):
-  if (request.method == 'GET'):
+class HomePageView(View):
+  def get (self, request, *args, **kwargs):
     selectedYear = request.GET.get('year','1')
     if selectedYear == '1':
       return render(request, 'home.html')
@@ -18,15 +20,32 @@ def home (request):
       selectedYear = None
       return render(request, 'home.html')
 
-def results (request, year, raceId):
-  if (request.method == 'GET'):
-    selectedYear = request.GET.get('year','')
+class SeasonPageView(View):
+  def get (self, request, *args, **kwargs):
+    selectedRaceId = self.kwargs['raceId']
+    selectedYear = self.kwargs['year']
+    raceName = None
     raceResults = []
-    rawResults = Results.objects.filter(raceId=raceId)
+    rawResults = Results.objects.filter(raceId=selectedRaceId)
     for item in rawResults:
+      if (raceName == None):
+        raceName = item.raceId.name
       if (item.position == -1):
         item.position = 99
       else:
         item.position = item.position
       raceResults.append(item)
-    return render(request, 'results.html', context={'results': raceResults})
+    raceResults = sorted(raceResults, key=lambda k: k.position)
+    return render(request, 'results.html', context={'results': raceResults, 'year': selectedYear, 'raceName': raceName, 'raceId': selectedRaceId})
+
+class DriverPageView(View):
+  def get (self, request, *args, **kwargs):
+    _driverData = Drivers.objects.get(driverId=self.kwargs['driverId'])
+    _raceData = Races.objects.get(raceId=self.kwargs['raceId'])
+    _year = self.kwargs['year']
+    _resultsData = Results.objects.all().filter(raceId=self.kwargs['raceId']).filter(driverId=self.kwargs['driverId'])
+    _wikiData = services.getWikiData(_driverData.url)
+    print("Results data - ", list(_resultsData.values()))
+
+
+    return render(request, 'driver-detail.html', context={'driverData': _driverData, 'raceData': _raceData, 'year': _year, 'wikiData': _wikiData, 'resultsData': _resultsData })

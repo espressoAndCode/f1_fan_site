@@ -1,6 +1,6 @@
 {% extends 'index.html' %} {% csrf_token %} {% block datatable%}
 <div class="card-header">
-  <div id="table-title">Formula 1 {{ year }} Season</div>
+  <div id="table-title">Formula 1 - {{ year }} {{ raceName }}</div>
 </div>
 <div class="card-body">
   <div class="table-responsive">
@@ -29,26 +29,15 @@
           <td>{{ result.position }}</td>
           {% endif %}
           <td>
-            <a href="{{ result.driverId.url }}">
+            <a href="../../driver-detail/{{ year }}/{{ raceId }}/{{result.driverId.driverId}}">
               {{ result.driverId.forename }} {{ result.driverId.surname }}
             </a>
           </td>
-          {% comment %}
-          <td>
-            <a href="{{ race.circuitId.url }}"> {{ race.circuitId.name }} </a>
-          </td>
-          {% endcomment %} {% comment %}
-          <td>
-            <button type="button" class="btn btn-sm btn-danger" id="{{}}">
-              Results
-            </button>
-          </td>
-          {% endcomment %}
         </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
 </div>
-<!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+
 {% endblock %}
