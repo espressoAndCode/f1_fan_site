@@ -1,7 +1,9 @@
 import requests
+
 from bs4 import BeautifulSoup
 from googlesearch import search
-
+from requests.compat import urljoin
+from urllib.parse import urlencode
 
 def getWikiData(url):
   page = requests.get(url)
@@ -15,12 +17,11 @@ def getWikiData(url):
 
 
 def getWebSearchResults(driver, year, race):
-  # searchParams = "'formula 1' +'"+driver+"' '"+ str(year) +"' '"+race+"'"
-  searchParams = 'Ayrton Senna, 1992, Monaco Grand Prix'
+  print(driver, year, race)
+  searchParams ={ "q": [driver, str(year), race]}
+  urlParams = urlencode(searchParams, doseq=True)
+  print("url - ", urlParams)
 
-  print("Search params - ", searchParams)
-  results = []
-  for url in search(searchParams, stop=20):
-    # results.append(url)
-    print(url)
-    return results
+  print("urlString - ", urlString)
+  pages = requests.get(urlString).json()
+  return pages
