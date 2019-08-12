@@ -21,7 +21,7 @@ def getWebSearchResults(driver, year, race):
   searchParams ={ "q": [driver, str(year), race]}
   urlParams = urlencode(searchParams, doseq=True)
   print("url - ", urlParams)
-
+  urlString = 'https://www.googleapis.com/customsearch/v1?q=' + urlParams + '&cx=016700597778999691736:clhkunuoizk&lr=lang_en&key=AIzaSyDIKEbCJ5dihD-1HoGFYo2eI-WaFtVhtD8'
   print("urlString - ", urlString)
   pages = requests.get(urlString).json()
   return pages
