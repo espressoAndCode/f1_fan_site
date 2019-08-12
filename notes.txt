@@ -1,0 +1,6 @@
+https://developers.google.com/custom-search/v1/using_rest
+
+https://developers.google.com/custom-search/v1/cse/list
+
+
+

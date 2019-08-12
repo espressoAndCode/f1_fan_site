@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.db.models import Q
 from selection import services
 import requests
+from pprint import pprint
 from selection.models import Circuits, DriverStandings, Drivers, LapTimes, Races, Results
 
 class HomePageView(View):
@@ -47,4 +48,7 @@ class DriverPageView(View):
     _driverName = getattr(_driverData, 'forename') + " " + getattr(_driverData, 'surname')
     _raceName = getattr(_raceData, 'name')
     _webSearchData = services.getWebSearchResults(_driverName, _year, _raceName)
+    print('Web search data - ')
+    pprint(_webSearchData)
+
     return render(request, 'driver-detail.html', context={'driverData': _driverData, 'raceData': _raceData, 'year': _year, 'wikiData': _wikiData, 'resultsData': _resultsData, '  ':  _webSearchData})
