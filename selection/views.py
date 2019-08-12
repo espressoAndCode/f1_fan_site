@@ -51,4 +51,4 @@ class DriverPageView(View):
     print('Web search data - ')
     pprint(_webSearchData)
 
-    return render(request, 'driver-detail.html', context={'driverData': _driverData, 'raceData': _raceData, 'year': _year, 'wikiData': _wikiData, 'resultsData': _resultsData, '  ':  _webSearchData})
+    return render(request, 'driver-detail.html', context={'driverData': _driverData, 'raceData': _raceData, 'year': _year, 'wikiData': _wikiData, 'resultsData': _resultsData, 'webSearchData':  _webSearchData})
