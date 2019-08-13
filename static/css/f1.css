@@ -9,7 +9,7 @@
 }
 
 .choice {
-  padding: 10px;
+  padding: 10%;
 }
 
 .white-text {
@@ -47,3 +47,12 @@
     rgba(0, 0, 0, 1) 100%
   );
 }
+
+figure {
+  text-align: center;
+}
+
+figure img {
+  width: 80%;
+}
+

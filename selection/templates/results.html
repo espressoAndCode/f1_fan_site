@@ -1,40 +1,39 @@
-{% extends 'index.html' %} {% csrf_token %} {% block datatable%}
-<div class="card-header">
-  <div id="table-title">Formula 1 - {{ year }} {{ raceName }}</div>
-</div>
-<div class="card-body">
-  <div class="table-responsive">
-    <table
-      class="table table-bordered"
-      id="dataTable"
-      width="100%"
-      cellspacing="0"
-    >
-      <thead>
-        <tr>
-          <th>Position</th>
-          <th>Driver</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for result in results  %}
-        <tr>
-          {% if result.position == 99 %}
-          <td>DNF</td>
-          {% else %}
-          <td hidden>{{ result.position|dictsort:"position" }}</td>
-          <td>{{ result.position }}</td>
-          {% endif %}
-          <td>
-            <a href="../../driver-detail/{{ year }}/{{ raceId }}/{{result.driverId.driverId}}">
-              {{ result.driverId.forename }} {{ result.driverId.surname }}
-            </a>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-</div>
-
+{% extends 'index.html' %}
+{% csrf_token %}
+{% block datatable %}
+    <div class="card-header">
+        <div id="table-title">Formula 1 -
+            {{ year }}
+            {{ raceName }}</div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table cellspacing="0" class="table table-bordered" id="dataTable" width="100%">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Driver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                        <tr>
+                            {% if result.position == 99 %}
+                                <td>DNF</td>
+                            {% else %}
+                                <td hidden>{{ result.position|dictsort:"position" }}</td>
+                                <td>{{ result.position }}</td>
+                            {% endif %}
+                            <td>
+                                <a href="../../driver-detail/{{ year }}/{{ raceId }}/{{ result.driverId.driverId }}" target="_blank">
+                                    {{ result.driverId.forename }}
+                                    {{ result.driverId.surname }}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
