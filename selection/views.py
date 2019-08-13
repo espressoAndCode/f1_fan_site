@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from django.contrib import messages
-from django.db.models import Q
 from selection import services
 import requests
 from pprint import pprint
@@ -10,16 +9,17 @@ from selection.models import Circuits, DriverStandings, Drivers, LapTimes, Races
 
 class HomePageView(View):
   def get (self, request, *args, **kwargs):
+    _webSearchData = services.getFrontPageResults()
     selectedYear = request.GET.get('year','1')
     if selectedYear == '1':
-      return render(request, 'home.html')
+      return render(request, 'home.html', context={'webSearchData':  _webSearchData})
     elif (int(selectedYear) > 1949 and int(selectedYear) < 2019):
       races = Races.objects.filter(year=selectedYear)
       return render(request, 'select.html', context={'races': races, 'year': selectedYear})
     else:
       messages.info(request, 'Please enter a year between 1949 and 2019.')
       selectedYear = None
-      return render(request, 'home.html')
+      return render(request, 'home.html', context={'webSearchData':  _webSearchData})
 
 class SeasonPageView(View):
   def get (self, request, *args, **kwargs):
@@ -48,7 +48,4 @@ class DriverPageView(View):
     _driverName = getattr(_driverData, 'forename') + " " + getattr(_driverData, 'surname')
     _raceName = getattr(_raceData, 'name')
     _webSearchData = services.getWebSearchResults(_driverName, _year, _raceName)
-    print('Web search data - ')
-    pprint(_webSearchData)
-
     return render(request, 'driver-detail.html', context={'driverData': _driverData, 'raceData': _raceData, 'year': _year, 'wikiData': _wikiData, 'resultsData': _resultsData, 'webSearchData':  _webSearchData})
