@@ -25,7 +25,7 @@ def getWebSearchResults(driver, year, race):
   return pages
 
 def getFrontPageResults():
-  searchParams ={ "q": "formula 1 today"}
+  searchParams ={ "q": "formula 1 news"}
   urlParams = urlencode(searchParams)
   urlString = f'https://www.googleapis.com/customsearch/v1?q={urlParams}&cx={seId}&lr=lang_en&key={seKey}'
   pages = requests.get(urlString).json()
