@@ -1,6 +1,5 @@
 import requests, os
 from bs4 import BeautifulSoup
-from googlesearch import search
 from requests.compat import urljoin
 from urllib.parse import urlencode
 
