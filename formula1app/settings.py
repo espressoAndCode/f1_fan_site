@@ -13,7 +13,7 @@ SECRET_KEY = 'r_ed6rwnq9@qf(!ps4g$a6g*(dnczf$0o8s8z_gqz0@ag3cyeh'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -116,7 +116,3 @@ STATIC_URL = '/static/admin/admin/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static/admin/admin/"),
 ]
-
-
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
