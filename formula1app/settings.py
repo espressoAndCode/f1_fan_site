@@ -16,7 +16,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['f1fanatic.azurewebsites.net']
+ALLOWED_HOSTS = ['f1fan.azurewebsites.net']
 
 
 # Application definition
